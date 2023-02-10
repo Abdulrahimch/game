@@ -1,6 +1,6 @@
 console.log ("Enter your choice (0 = Rock // 1 = Paper // 2 = Scissors");
 
-const allPlayerChoices = {
+const allChoices = {
   0: 'rock',
   1: 'paper',
   2: 'scissors'
@@ -10,7 +10,7 @@ const computerChoice = () => {
   const choices = ["rock", "paper", "scissors"];
 
   const random = Math.floor(Math.random() * choices.length);
-  return allPlayerChoices[random];
+  return allChoices[random];
 }
 
 const playerChoice = () => {
@@ -21,7 +21,7 @@ const playerChoice = () => {
     return;
   }
 
-  return allPlayerChoices[choice];
+  return allChoices[choice];
 };
 
 
