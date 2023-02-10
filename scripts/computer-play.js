@@ -7,16 +7,14 @@ const allChoices = {
 };
 
 const computerChoice = () => {
-  const choices = ["rock", "paper", "scissors"];
-
-  const random = Math.floor(Math.random() * choices.length);
+  const random = Math.floor(Math.random() * 3);
   return allChoices[random];
 }
 
 const playerChoice = () => {
   const choice = prompt("Enter your choice (0 = Rock // 1 = Paper // 2 = Scissors):");
 
-  if (typeof(choice) !== 'number' ||  (0 <= playerChoice < 2)) {
+  if (typeof(choice) !== 'number' ||  (0 > choice > 2)) {
     console.log("Invalid choice. Please enter a number between 0 and 2.");
     return;
   }
