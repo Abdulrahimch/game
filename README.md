@@ -1,1 +1,1 @@
-https://mathzxs.github.io/Jokenpo/
+# game

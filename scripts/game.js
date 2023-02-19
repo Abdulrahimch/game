@@ -1,58 +1,23 @@
-const jokenpo = () => {
-  let playAgain = true;
-  while (playAgain) {
-    console.clear();
-    const rounds = 5;
-    let wins = 0;
-    let losses = 0;
-    let ties = 0;
-    const options = ['scissors', 'rock', 'paper'];
+const playRound = require('./play-round');
+const { playerChoice, computerChoice } = require('./computer-play');
 
-    for (let i = 0; i < rounds; i++) {
-      console.log(`Round ${i + 1}:`);
-      let player = prompt('Rock, paper, or scissors?').toLowerCase();
-      while (!options.includes(player)) {
-        player = prompt('Invalid choice. Rock, paper, or scissors?').toLowerCase();
-      }
-      const computer = options[Math.floor(Math.random() * options.length)];
-      console.log(`You played ${player} and the computer played ${computer}.`);
-      if (player === computer) {
-        console.log('Tie!');
-        ties++;
-      } else if (player === 'rock') {
-        if (computer === 'scissors') {
-          console.log('You win!');
-          wins++;
-        } else {
-          console.log('You lose.');
-          losses++;
-        }
-      } else if (player === 'paper') {
-        if (computer === 'rock') {
-          console.log('You win!');
-          wins++;
-        } else {
-          console.log('You lose.');
-          losses++;
-        }
-      } else if (player === 'scissors') {
-        if (computer === 'paper') {
-          console.log('You win!');
-          wins++;
-        } else {
-          console.log('You lose.');
-          losses++;
-        }
-      }
-      console.log(`Score: Wins: ${wins}, Losses: ${losses}, Ties: ${ties}`);
-    }
-    console.log(`Final Results: Wins: ${wins}, Losses: ${losses}, Ties: ${ties}`);
-    playAgain = window.confirm('Do you want to play again?');
-    if (playAgain===true){
-    console.clear()
-   };
-  }
-};
+const game = () => {
+    let playerScore = 0,
+        computerScore = 0;
 
-jokenpo();
+    for (let round = 0; round < 5; round++) {
+        const playerSelection = playerChoice(),
+              computerSelection = computerChoice();
+        playerScore += playRound(playerSelection, computerSelection).playerCounter;
+        computerScore += playRound(playerSelection, computerSelection).computerCounter;
+        console.log(playRound(playerSelection, computerSelection).response);
+    };
 
+    if (playerScore > computerScore) 
+        console.log(`Congrates  you Wone!!!! your Score: ${playerScore} Computer Score: ${computerScore}`);
+    else if (playerScore < computerScore)
+        console.log(`Game over  Try again later, your Score: ${playerScore} Computer Score: ${computerScore}`);
+    else console.log(`None won, Try one more time , your Score: ${playerScore} Computer Score: ${computerScore}`);
+}
+
+game();
